@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>生日快乐</title>
+    <style>
+        #my-lucky {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,8 +20,8 @@
         let count= 1;
         const box = document.getElementById('box');
         window.myLucky = new LuckyCanvas.LuckyWheel('#my-lucky', {
-            width: '400px',
-            height: '400px',
+            width: '320px',
+            height: '320px',
             blocks: [{ 
                 padding: '10px', 
                 background: '#869cfa',
@@ -47,7 +52,7 @@
                     fonts: [
                         { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
                     ],
-                    range: 20
+                    range: 15
                 },
                 {
                     fonts: [
@@ -61,12 +66,12 @@
                     ],
                     range: 2
                 },
-                {
-                    fonts: [
-                        { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
-                    ],
-                    range: 20
-                },
+                // {
+                //     fonts: [
+                //         { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
+                //     ],
+                //     range: 15
+                // },
                 {
                     fonts: [
                         { text: '现金888', top: '10%', fontSize: '18px', fontColor: '#000' },
@@ -77,7 +82,7 @@
                     fonts: [
                         { text: '不带崽一天', top: '10%', fontSize: '18px', fontColor: '#0f4c75' },
                     ],
-                    range: 20
+                    range: 10
                 },
                 {
                     fonts: [
@@ -85,12 +90,12 @@
                     ],
                     range: 20
                 },
-                {
-                    fonts: [
-                        { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
-                    ],
-                    range: 20
-                },
+                // {
+                //     fonts: [
+                //         { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
+                //     ],
+                //     range: 15
+                // },
                 {
                     fonts: [
                         { text: '金手镯', top: '10%', fontSize: '18px', fontColor: '#000' },
@@ -139,7 +144,7 @@
                 // console.log('prize', prize);
                 // alert('恭喜中奖: ' + prize.fonts[0].text);
                 const content = document.createElement('p');
-                content.innerHTML = `第${count}抽奖结果: ${prize.fonts[0].text}`
+                content.innerHTML = `第${count}次抽奖结果: ${prize.fonts[0].text}`
                 box.appendChild(content);
                 count += 1;
             }
