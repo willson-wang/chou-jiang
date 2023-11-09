@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="my-lucky"></div>
+    <div id="box"></div>
+    <script src="https://unpkg.com/lucky-canvas@1.7.25"></script>
+    <script>
+        let count= 1;
+        const box = document.getElementById('box');
+        window.myLucky = new LuckyCanvas.LuckyWheel('#my-lucky', {
+            width: '400px',
+            height: '400px',
+            blocks: [{ 
+                padding: '10px', 
+                background: '#869cfa',
+            }],
+            defaultStyle: {
+                background: '#e9e8fe'
+            },
+            defaultConfig: {
+                gutter: 2,
+                speed: 20
+            },
+            // prizes: [
+            //     { background: '#e9e8fe', fonts: [{ text: '0' }] },
+            //     { background: '#b8c5f2', fonts: [{ text: '1' }] },
+            //     { background: '#e9e8fe', fonts: [{ text: '2' }] },
+            //     { background: '#b8c5f2', fonts: [{ text: '3' }] },
+            //     { background: '#e9e8fe', fonts: [{ text: '4' }] },
+            //     { background: '#b8c5f2', fonts: [{ text: '5' }] },
+            // ],
+            prizes: [
+                {
+                    fonts: [
+                        { text: '金手链', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 2
+                },
+                {
+                    fonts: [
+                        { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: '现金200', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: '金戒指', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 2
+                },
+                {
+                    fonts: [
+                        { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: '现金888', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 10
+                },
+                {
+                    fonts: [
+                        { text: '不带崽一天', top: '10%', fontSize: '18px', fontColor: '#0f4c75' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: '现金200', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: '金手镯', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 1
+                },
+                {
+                    fonts: [
+                        { text: '现金200', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 20
+                },
+                {
+                    fonts: [
+                        { text: 'SK-II套装', top: '10%', fontSize: '18px', fontColor: '#0f4c75' },
+                    ],
+                    range: 10
+                },
+                {
+                    fonts: [
+                        { text: '现金666', top: '10%', fontSize: '18px', fontColor: '#000' },
+                    ],
+                    range: 10
+                },
+                
+            ],
+            buttons: [
+                { radius: '40%', background: '#617df2' },
+                { radius: '35%', background: '#afc8ff' },
+                {
+                    radius: '30%', background: '#869cfa',
+                    pointer: true,
+                    fonts: [{ text: '开始', top: '-10px' }]
+                },
+            ],
+            start: function () {
+                // 开始游戏
+                myLucky.play()
+                // 假设接口的请求速度是1s
+                setTimeout(_ => {
+                    // 停止游戏
+                    myLucky.stop()
+                }, 1000)
+            },
+            end: function (prize) { // 游戏停止时触发
+                // console.log('prize', prize);
+                // alert('恭喜中奖: ' + prize.fonts[0].text);
+                const content = document.createElement('p');
+                content.innerHTML = `第${count}抽奖结果: ${prize.fonts[0].text}`
+                box.appendChild(content);
+                count += 1;
+            }
+        })
+
+        
+
+    </script>
+</body>
+
+</html>
