@@ -18,6 +18,7 @@
     <script src="https://unpkg.com/lucky-canvas@1.7.25"></script>
     <script>
         let count= 1;
+        const priceArr = []
         const box = document.getElementById('box');
         window.myLucky = new LuckyCanvas.LuckyWheel('#my-lucky', {
             width: '320px',
@@ -46,25 +47,29 @@
                     fonts: [
                         { text: '金手链', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 2
+                    range: 2,
+                    price: 10
                 },
                 {
                     fonts: [
                         { text: '谢谢参与', top: '10%', fontSize: '16px', fontColor: '#aaa' },
                     ],
-                    range: 15
+                    range: 15,
+                    price: 0
                 },
                 {
                     fonts: [
                         { text: '现金200', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 20
+                    range: 20,
+                    price: 2
                 },
                 {
                     fonts: [
                         { text: '金戒指', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 2
+                    range: 2,
+                    price: 10
                 },
                 // {
                 //     fonts: [
@@ -76,19 +81,22 @@
                     fonts: [
                         { text: '现金888', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 10
+                    range: 10,
+                    price: 8
                 },
                 {
                     fonts: [
                         { text: '不带崽一天', top: '10%', fontSize: '18px', fontColor: '#0f4c75' },
                     ],
-                    range: 10
+                    range: 10,
+                    price: 0
                 },
                 {
                     fonts: [
                         { text: '现金200', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 20
+                    range: 20,
+                    price: 2
                 },
                 // {
                 //     fonts: [
@@ -100,25 +108,29 @@
                     fonts: [
                         { text: '金手镯', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 1
+                    range: 1,
+                    price: 10
                 },
                 {
                     fonts: [
                         { text: '现金200', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 20
+                    range: 20,
+                    price: 2
                 },
                 {
                     fonts: [
                         { text: 'SK-II套装', top: '10%', fontSize: '18px', fontColor: '#0f4c75' },
                     ],
-                    range: 10
+                    range: 10,
+                    price: 8
                 },
                 {
                     fonts: [
                         { text: '现金666', top: '10%', fontSize: '18px', fontColor: '#000' },
                     ],
-                    range: 10
+                    range: 10,
+                    price: 6
                 },
                 
             ],
@@ -136,13 +148,20 @@
                 myLucky.play()
                 // 假设接口的请求速度是1s
                 setTimeout(_ => {
+                    console.log('count', count, priceArr);
                     // 停止游戏
-                    myLucky.stop()
+                    if (count === 5 && priceArr.every((item) => item <= 6)) {
+                        console.log('特殊处理');
+                        myLucky.stop(3)
+                    } else {
+                        myLucky.stop()
+                    }
                 }, 1000)
             },
             end: function (prize) { // 游戏停止时触发
-                // console.log('prize', prize);
+                console.log('prize', prize);
                 // alert('恭喜中奖: ' + prize.fonts[0].text);
+                priceArr.push(prize.price)
                 const content = document.createElement('p');
                 content.innerHTML = `第${count}次抽奖结果: ${prize.fonts[0].text}`
                 box.appendChild(content);
